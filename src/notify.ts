@@ -10,7 +10,8 @@ function buildMessage(result: CheckResult, changed: boolean): string {
   let msg = `${icon} ${name}\n`;
   msg += `Store: ${result.store}\n`;
   msg += `Status: ${result.statusText}\n`;
-  if (changed) msg += `(status changed)`;
+  if (changed) msg += `(status changed)\n`;
+  msg += `\n${result.url}`;
   return msg;
 }
 
@@ -44,6 +45,7 @@ async function sendDiscord(result: CheckResult, changed: boolean): Promise<void>
       embeds: [
         {
           title: `${result.available ? "\u{1F7E2}" : "\u{1F534}"} ${name}`,
+          url: result.url,
           color,
           fields: [
             { name: "Store", value: result.store, inline: true },
