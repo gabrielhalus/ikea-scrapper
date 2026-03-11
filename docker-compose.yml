@@ -1,0 +1,7 @@
+services:
+  ikea-scrapper:
+    build: .
+    container_name: ikea-scrapper
+    restart: unless-stopped
+    env_file:
+      - .env
